@@ -1,0 +1,94 @@
+﻿
+@model POOI_EF_TORRES_VENERO.Models.Consumidor
+
+@{
+    ViewBag.Title = "Actualizar consumidor";
+}
+
+<h2>Actualizar consumidor</h2>
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-warning">
+        @ViewBag.Mensaje
+    </div>
+}
+
+@using (Html.BeginForm("Update", "Consumidor", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-horizontal">
+        <div class="form-group">
+            @Html.LabelFor(m => m.Dnicont,
+                new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Dnicont,
+                    new
+                         {
+                             @class = "form-control",
+                          @readonly = "readonly"
+                         })
+                @Html.ValidationMessageFor(m => m.Dnicont,
+                    "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Nomcont,
+                new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Nomcont,
+                    new { @class = "form-control", maxlength = "40" })
+                @Html.ValidationMessageFor(m => m.Nomcont,
+                    "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Apecont,
+                new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Apecont,
+                    new { @class = "form-control", maxlength = "40" })
+                @Html.ValidationMessageFor(m => m.Apecont,
+                    "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Emailcont,
+                new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(m => m.Emailcont,
+                    new { @class = "form-control", maxlength = "250" })
+                @Html.ValidationMessageFor(m => m.Emailcont,
+                    "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Idpais, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Idpais, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Idpais, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Actualizar"
+                       class="btn btn-primary" />
+
+                @Html.ActionLink("Volver", "Index",
+                    null, new { @class = "btn btn-default" })
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

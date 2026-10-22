@@ -1,0 +1,63 @@
+﻿
+@model IEnumerable<POOI_EF_TORRES_VENERO.Models.Consumidor>
+
+@{
+    ViewBag.Title = "Lista de consumidores";
+}
+
+<h2>Lista de consumidores</h2>
+
+@if (TempData["Mensaje"] != null)
+{
+    <div class="alert alert-info">
+        @TempData["Mensaje"]
+    </div>
+}
+
+<p>
+    @Html.ActionLink("Registrar consumidor", "Create",
+        null, new { @class = "btn btn-primary" })
+</p>
+
+@if (Model == null || !Model.Any())
+{
+    <p>No hay registros</p>
+}
+else
+{
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>DNI</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Correo electrónico</th>
+                <th>País</th>
+                <th>Operaciones</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Dnicont</td>
+                    <td>@item.Nomcont</td>
+                    <td>@item.Apecont</td>
+                    <td>@item.Emailcont</td>
+                    <td>@item.Idpais</td>
+                    <td>
+                        @Html.ActionLink("Editar", "Update",
+                            new { id = item.Dnicont }) |
+
+                        @Html.ActionLink("Detalles", "Details",
+                            new { id = item.Dnicont }) |
+
+                        @Html.ActionLink("Eliminar", "Delete",
+                            new { id = item.Dnicont })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}

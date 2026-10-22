@@ -1,0 +1,38 @@
+﻿@model POOI_EF_TORRES_VENERO.Models.Consumidor
+
+@{
+    ViewBag.Title = "Eliminar consumidor";
+}
+
+<h2>Eliminar consumidor</h2>
+
+<h4>¿Está seguro de eliminar este registro?</h4>
+
+<dl class="dl-horizontal">
+    <dt>DNI</dt>
+    <dd>@Model.Dnicont</dd>
+
+    <dt>Nombre</dt>
+    <dd>@Model.Nomcont</dd>
+
+    <dt>Apellido</dt>
+    <dd>@Model.Apecont</dd>
+
+    <dt>Correo electrónico</dt>
+    <dd>@Model.Emailcont</dd>
+
+    <dt>País</dt>
+    <dd>@Model.Idpais</dd>
+</dl>
+
+@using (Html.BeginForm("Delete", "Consumidor",
+    new { id = Model.Dnicont }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <input type="submit" value="Confirmar eliminación"
+           class="btn btn-danger" />
+
+    @Html.ActionLink("Cancelar", "Index",
+            null, new { @class = "btn btn-default" })
+}
